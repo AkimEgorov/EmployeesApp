@@ -1,0 +1,48 @@
+<div class="jumbtron">
+    <h1 class="display-4 text-center">Сотрудники</h1>
+  </div>
+  
+  <div class="col-md-12">
+    <button type="button" class="btn btn-success" (click)="addEmployee()">Добавить сотрудника</button>
+    <hr />
+  
+    <div class="form-group">
+      <label for="Search">Поиск</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-search"></i>
+          </div>
+        </div>
+        <input type="text" [(ngModel)]="searchTerm" />
+      </div>
+    </div>
+  
+    <table class="table table-condensed table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+            <th>Отдел</th>
+            <th>Ф.И.О</th>
+            <th>Дата рождения</th>
+            <th>Дата устройства на работу</th>
+            <th>Заработная плата</th>
+            <th>Опции</th>
+          </tr>
+        </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+            <td>{{employee.department}}</td>
+            <td>{{employee.fullName}}</td>
+            <td>{{employee.birthDate | date: 'mediumDate'}}</td>
+            <td>{{employee.employmentDate | date: 'mediumDate'}}</td>
+            <td>{{employee.salary | currency}}</td>
+          <td class="action-button-column">
+            <a title="Edit" (click)="editEmployee(employee.id)"><i class="fas fa-edit"></i> </a>
+            <a title="Delete" (click)="deleteEmployee(employee.id)" style="margin-left: 12px;"><i
+                class="fas fa-trash-alt"></i> </a>
+          </td>
+        </tr>
+      </tbody>
+  
+    </table>
+  </div>

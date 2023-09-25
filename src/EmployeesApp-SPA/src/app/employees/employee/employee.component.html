@@ -1,0 +1,55 @@
+<div class="jumbtron">
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off" class="col-md-5 form">
+      <h2 class="text-center text-primary">Сотрудник</h2>
+      <input type="hidden" name="id" #id="ngModel" [(ngModel)]="formData!.id">
+      <div class="form-group">
+        <input name="department" #department="ngModel" [(ngModel)]="formData!.department" class="form-control" required
+          [ngClass]="{'is-invalid': form.controls['department']?.invalid && form.controls['department']?.touched}" placeholder="Отдел">
+        <div class="invalid-feedback" *ngIf="department.invalid && department.touched">Заполните название департамента</div>
+      </div>
+      <div class="form-group">
+        <input name="fullName" #fullName="ngModel" [(ngModel)]="formData!.fullName" class="form-control" placeholder="Ф.И.О"
+          [ngClass]="{'is-invalid': form.controls['fullName']?.invalid && form.controls['fullName']?.touched}" required>
+        <div class="invalid-feedback" *ngIf="fullName.invalid && fullName.touched">Заполните Ф.И.О сотрудника</div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="Дата рождения" id="birthDate" name="birthDate" ngbDatepicker
+            #d="ngbDatepicker" #birthDate="ngModel" [(ngModel)]="formData!.birthDate" class="form-control" type="text"
+            [(ngModel)]="formData!.birthDate" [minDate]="{year: 1900, month: 1, day: 1}"
+            [ngClass]="{'is-invalid': form.controls['birthDate']?.invalid && form.controls['birthDate']?.touched}"
+            required>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary fa fa-calendar-alt" (click)="d.toggle()" type="button"></button>
+          </div>
+          <div class="invalid-feedback" *ngIf="birthDate.invalid && birthDate.touched">Заполните дату рождения
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="Дата устройства на работу" id="employmentDate" name="employmentDate" ngbDatepicker
+            #d="ngbDatepicker" #employmentDate="ngModel" [(ngModel)]="formData!.employmentDate" class="form-control" type="text"
+            [(ngModel)]="formData!.employmentDate" [minDate]="{year: 1900, month: 1, day: 1}"
+            [ngClass]="{'is-invalid': form.controls['employmentDate']?.invalid && form.controls['employmentDate']?.touched}"
+            required>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary fa fa-calendar-alt" (click)="d.toggle()" type="button"></button>
+          </div>
+          <div class="invalid-feedback" *ngIf="employmentDate.invalid && employmentDate.touched">Заполните дату устройства на работу
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input name="salary" #salary="ngModel" [(ngModel)]="formData!.salary" class="form-control" placeholder="Заработная плата"
+          type="number" [ngClass]="{'is-invalid': form.controls['salary']?.invalid && form.controls['salary']?.touched}"
+          required>
+        <div class="invalid-feedback" *ngIf="salary.invalid && salary.touched">Заполните зарплату</div>
+      </div>
+      <div class="form-group text-center">
+        <button class="btn btn-success mr-2" type="submit">Сохранить</button>
+        <button class="btn btn-default" type="button" (click)="cancel()">Отменить</button>
+      </div>
+  
+    </form>
+  </div>
